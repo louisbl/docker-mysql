@@ -6,7 +6,7 @@ ENV HOME /root
 
 # Install packages
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-server
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-server-5.5
 
 RUN /usr/sbin/enable_insecure_key
 
