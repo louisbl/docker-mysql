@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.9.11
+FROM phusion/baseimage:0.9.13
 MAINTAINER louisbl <louis@beltramo.me>
 
 # Set correct environment variables.
@@ -8,7 +8,8 @@ ENV HOME /root
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-server-5.5
 
-RUN /usr/sbin/enable_insecure_key
+# remove ssh (use nsenter instead)
+RUN rm -rf /etc/service/sshd /etc/my_init.d/00_regen_ssh_host_keys.sh
 
 ADD build/my.cnf /etc/mysql/conf.d/my.cnf
 RUN chmod 664 /etc/mysql/conf.d/my.cnf
